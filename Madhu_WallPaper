@@ -1,0 +1,27 @@
+import os
+import shutil
+
+ToFP = r"C:\Users\madhu\Desktop\Spotl8Imgs"
+if os.path.exists(ToFP):
+    shutil.rmtree(ToFP)
+os.mkdir(ToFP)
+
+import shutil
+FromFP = r"C:\Users\madhu\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets"
+src_files = os.listdir(FromFP)
+for file_name in src_files:
+    full_name = FromFP+'\\'+file_name
+    file_size = os.path.getsize(full_name)
+    if file_size >= 100*(10**3):
+        #full_file_name = os.path.join(FromFP, file_name)
+        shutil.copy(full_name,ToFP)
+
+print('Copy Done')
+        
+tar_files = os.listdir(ToFP)
+for files in tar_files:
+    newname = files+'.jpg'
+    src =ToFP+'\\'+files
+    dst = ToFP+'\\'+newname 
+    os.rename(src,dst) 
+    
